@@ -1,5 +1,8 @@
 *.png
-*.csv
 *.pkl
 *.joblib
 *.jpg
+*.csv
+*.7z
+*.xlsx
+*.zip
