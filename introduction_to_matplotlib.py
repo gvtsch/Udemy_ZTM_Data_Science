@@ -2,7 +2,6 @@
 # # Introduction to Matplotlib
 
 # %%
-%matplotlib inline
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -46,7 +45,6 @@ type(fig), type(ax)
 
 # %%
 # 0. import matplotlib abd get it ready for plotting in Jupyter
-%matplotlib inline
 import matplotlib.pyplot as plt
 
 # 1. Prepare data
@@ -160,9 +158,13 @@ import pandas as pd
 # %%
 # Make a DataFrame
 import os
+import wget
 if not os.path.exists("car-sales.csv"):
-    !python -m wget https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/car-sales.csv
-car_sales = pd.read_csv("car-sales.csv")
+    site_url = "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/car-sales.csv"
+    file_name = wget.download(site_url)
+    car_sales = pd.read_csv(file_name)
+else:
+    car_sales = pd.read_csv("car-sales.csv")
 car_sales.head()
 
 # %%
@@ -248,12 +250,16 @@ car_sales["Odometer (KM)"].plot.hist(bins=8);
 # Let's try on another dataset
 import os
 if not os.path.exists("heart-disease.csv"):
-    !python -m wget https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/heart-disease.csv
-heart_disease = pd.read_csv("heart-disease.csv")
+    site_url = "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/heart-disease.csv"
+    file_name = wget.download(site_url)
+    heart_disease = pd.read_csv(file_name)
+else:
+    heart_disease = pd.read_csv("heart-disease.csv")
 heart_disease.head()
 
 # %%
 # Create a histogram
+print(heart_disease.head())
 heart_disease["age"].plot.hist(bins=50)
 
 # %%
