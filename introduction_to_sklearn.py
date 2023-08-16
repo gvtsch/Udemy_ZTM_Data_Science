@@ -18,7 +18,6 @@
 # ## An end to end Scikit-Learn workflow
 
 # %%
-%matplotlib inline
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -26,9 +25,13 @@ import numpy as np
 # %%
 # Import dataset
 import os
+import wget
 if not os.path.exists("heart-disease.csv"):
-    !python -w get https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/heart-disease.csv
-heart_disease = pd.read_csv("heart-disease.csv")
+    site_url = "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/heart-disease.csv"
+    file_name = wget.download(site_url)
+    heart_disease = pd.read_csv(file_name)
+else:
+    heart_disease = pd.read_csv("heart-disease.csv")
 heart_disease.head()
 
 # %%
@@ -153,8 +156,11 @@ X_train.shape, X_test.shape, y_train.shape, y_test.shape
 # %%
 import os
 if not os.path.exists("car-sales-extended.csv"):
-    !python -m wget "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/car-sales-extended.csv"
-
+    site_url = "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/car-sales-extended.csv"
+    file_name = wget.download(site_url)
+    car_sales = pd.read_csv(file_name)
+else:
+    car_sales = pd.read_csv("car-sales.csv")
 # %%
 car_sales = pd.read_csv("car-sales-extended.csv")
 car_sales.head()
@@ -212,9 +218,14 @@ model.score(X_test, y_test)
 # %%
 import os
 if not os.path.exists("car-sales-extended-missing-data.csv"):
-    !python -m wget "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/car-sales-extended-missing-data.csv"
-car_sales_missing = pd.read_csv("car-sales-extended-missing-data.csv")
+    site_url = "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/car-sales-extended-missing-data.csv"
+    file_name = wget.download(site_url)
+    car_sales_missing = pd.read_csv(file_name)
+else:
+    car_sales_missing = pd.read_csv("car-sales-extended-missing-data.csv")
 car_sales_missing.head()
+
+
 
 # %%
 car_sales_missing.isna().sum()
